@@ -6,3 +6,5 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+bevy = { git = "https://github.com/bevyengine/bevy" }
+bevy-inspector-egui = { git = "https://github.com/jakobhellermann/bevy-inspector-egui", version = "0.21.0" }
