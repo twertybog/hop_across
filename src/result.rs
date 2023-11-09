@@ -7,7 +7,7 @@ pub fn cross_finish_line(
     mut score_query: Query<(&mut Text, With<Score>)>
 ) {
     let (mut hopper_pos, _hopper) = hopper_query.single_mut();
-    let (mut score_text, score) = score_query.single_mut();
+    let (mut score_text, _score) = score_query.single_mut();
 
     if hopper_pos.translation.y >= FINISH_LINE {
         #[cfg(debug_assertions)]

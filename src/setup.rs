@@ -67,7 +67,7 @@ pub fn start(mut commands: Commands) {
         SpriteBundle {
             sprite: Sprite {
                 color: Color::rgb(1.0, 1.0, 1.0),
-                custom_size: Some(Vec2::new(500., 7.)),
+                custom_size: Some(Vec2::new(500., 10.)),
                 ..default()
             },
             transform: Transform::from_translation(Vec3::new(0., 0., -1.)),
