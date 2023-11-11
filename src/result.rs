@@ -1,6 +1,7 @@
 use crate::{Hopper, FINISH_LINE, Score};
 use bevy::prelude::*;
 use bevy_text::Text;
+pub const HOPPER_START: Vec3 = Vec3::new(0., -170., 0.);
 
 pub fn cross_finish_line(
     mut hopper_query: Query<(&mut Transform, With<Hopper>)>,
@@ -14,7 +15,7 @@ pub fn cross_finish_line(
         {
             dbg!("Cross Line");
         }
-        hopper_pos.translation = Vec3::new(0., -170., 0.);
+        hopper_pos.translation = HOPPER_START;
 
         match score_text.sections.get_mut(0){
             Some(text) => {
