@@ -9,7 +9,8 @@ use result::cross_finish_line;
 pub use result::HOPPER_START;
 mod cars;
 use cars::{
-    car_hitting_lr, car_hitting_rl, car_moving_lr, car_moving_rl, car_spawning_lr, car_spawning_rl,
+    car_despawning_lr, car_despawning_rl, car_hitting_lr, car_hitting_rl, car_moving_lr,
+    car_moving_rl, car_spawning_lr, car_spawning_rl,
 };
 
 #[derive(Resource)]
@@ -30,6 +31,8 @@ fn main() {
                 car_spawning_lr,
                 car_hitting_lr,
                 car_hitting_rl,
+                car_despawning_lr,
+                car_despawning_rl,
             ),
         )
         .insert_resource(SpawnTimer(Timer::from_seconds(5.0, TimerMode::Repeating)))

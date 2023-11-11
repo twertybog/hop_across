@@ -120,3 +120,25 @@ pub fn car_hitting_rl(
         }
     }
 }
+
+pub fn car_despawning_lr(
+    mut commands: Commands, 
+    car_lr_query: Query<(Entity, &Transform, With<LRCar>)>
+){
+    for (car_lr, car_lr_pos, _) in &car_lr_query{
+        if car_lr_pos.translation.x > 270.0{
+            commands.entity(car_lr).despawn();
+        }
+    }
+}
+
+pub fn car_despawning_rl(
+    mut commands: Commands, 
+    car_rl_query: Query<(Entity, &Transform, With<RLCar>)>
+){
+    for (car_rl, car_rl_pos, _) in &car_rl_query{
+        if car_rl_pos.translation.x < -270.0{
+            commands.entity(car_rl).despawn();
+        }
+    }
+}
