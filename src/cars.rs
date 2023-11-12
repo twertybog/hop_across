@@ -31,7 +31,7 @@ pub fn car_spawning_lr(
                 custom_size: Some(Vec2::new(30., 10.)),
                 ..default()
             },
-            transform: Transform::from_translation(Vec3::new(-320., position, 0.)),
+            transform: Transform::from_translation(Vec3::new(-280., position, 0.)),
             ..default()
         },
         LRCar
@@ -60,7 +60,7 @@ pub fn car_spawning_rl(
                 custom_size: Some(Vec2::new(30., 10.)),
                 ..default()
             },
-            transform: Transform::from_translation(Vec3::new(320., position, 0.)),
+            transform: Transform::from_translation(Vec3::new(280., position, 0.)),
             ..default()
         },
         RLCar

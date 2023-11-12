@@ -92,4 +92,59 @@ pub fn start(mut commands: Commands) {
         },
         Score,
     ));
+
+    //Borders
+    commands
+        .spawn((SpriteBundle {
+            sprite: Sprite {
+                color: Color::rgb(1.0, 0.0, 0.0),
+                custom_size: Some(Vec2::new(500., 3.)),
+                ..default()
+            },
+            transform: Transform::from_translation(Vec3::new(0., -200., 1.)),
+            ..default()
+        },))
+        .with_children(|child| {
+            child.spawn(SpriteBundle {
+                sprite: Sprite {
+                    color: Color::rgb(1.0, 0.0, 0.0),
+                    custom_size: Some(Vec2::new(3., 356.5)),
+                    ..default()
+                },
+                transform: Transform::from_translation(Vec3::new(-250., 176.75, 1.)),
+                ..default()
+            });
+        })
+        .with_children(|child| {
+            child.spawn(SpriteBundle {
+                sprite: Sprite {
+                    color: Color::rgb(1.0, 0.0, 0.0),
+                    custom_size: Some(Vec2::new(3., 356.5)),
+                    ..default()
+                },
+                transform: Transform::from_translation(Vec3::new(250., 176.75, 1.)),
+                ..default()
+            });
+        });
+
+    //End of word
+    commands.spawn(SpriteBundle {
+        sprite: Sprite {
+            color: Color::rgb(0.16863, 0.17255, 0.1843),
+            custom_size: Some(Vec2::new(50., 356.5)),
+            ..default()
+        },
+        transform: Transform::from_translation(Vec3::new(-276.5, -20., 2.)),
+        ..default()
+    }).with_children(|child|{
+        child.spawn(SpriteBundle {
+            sprite: Sprite {
+                color: Color::rgb(0.16863, 0.17255, 0.1843),
+                custom_size: Some(Vec2::new(50., 356.5)),
+                ..default()
+            },
+            transform: Transform::from_translation(Vec3::new(553., -20., 2.)),
+            ..default()
+        });
+    });
 }
