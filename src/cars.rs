@@ -2,7 +2,7 @@ use std::time::Duration;
 
 use bevy::prelude::*;
 use rand::Rng;
-use crate::{SpawnTimer, Hopper, HOPPER_START};
+use crate::{SpawnTimer, Hopper, HOPPER_START, Running};
 
 const LR_POSITION: [f32; 5] = [24.0, 48.0, 72.0, 96.0, 120.0];
 const RL_POSITION: [f32; 5] = [-24.0, -48.0, -72.0, -96.0, -120.0];
@@ -34,7 +34,8 @@ pub fn car_spawning_lr(
             transform: Transform::from_translation(Vec3::new(-280., position, 0.)),
             ..default()
         },
-        LRCar
+        LRCar,
+        Running
     ));
 
     #[cfg(debug_assertions)]{
@@ -63,7 +64,8 @@ pub fn car_spawning_rl(
             transform: Transform::from_translation(Vec3::new(280., position, 0.)),
             ..default()
         },
-        RLCar
+        RLCar, 
+        Running
     ));
 
     #[cfg(debug_assertions)]{
