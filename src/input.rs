@@ -1,7 +1,11 @@
-use crate::{Hopper, GameState};
+use crate::{GameState, Hopper};
 use bevy::prelude::*;
 
-pub fn keyboard_input(mut next_state: ResMut<NextState<GameState>>,keys: Res<Input<KeyCode>>, mut query: Query<&mut Transform, With<Hopper>>) {
+pub fn keyboard_input(
+    mut next_state: ResMut<NextState<GameState>>,
+    keys: Res<Input<KeyCode>>,
+    mut query: Query<&mut Transform, With<Hopper>>,
+) {
     let mut position = query.single_mut();
 
     if keys.pressed(KeyCode::W) {
@@ -37,11 +41,17 @@ pub fn keyboard_input(mut next_state: ResMut<NextState<GameState>>,keys: Res<Inp
         }
     }
 
-    if keys.just_pressed(KeyCode::Escape){
+    if keys.just_pressed(KeyCode::Escape) {
         next_state.set(GameState::GamePause);
         #[cfg(debug_assertions)]
         {
             dbg!("Pressed Esc!");
         }
+    }
+}
+
+pub fn pause_input(mut next_state: ResMut<NextState<GameState>>, keys: Res<Input<KeyCode>>) {
+    if keys.just_pressed(KeyCode::Escape) {
+        next_state.set(GameState::AfterPause);
     }
 }

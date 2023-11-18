@@ -1,5 +1,7 @@
 use bevy::prelude::*;
 
+use crate::Score;
+
 #[derive(Component)]
 pub struct Hopper;
 
@@ -13,15 +15,19 @@ pub struct StartLine;
 pub struct MiddleLine;
 
 #[derive(Component)]
-pub struct Score;
+pub struct Running;
 
 #[derive(Component)]
-pub struct Running;
+pub struct SecondsEnding;
+
+#[derive(Component)]
+pub struct ScoreBoard;
 
 pub const FINISH_LINE: f32 = 150.0;
 pub const START_LINE: f32 = -150.0;
 
-pub fn ingame_start(mut commands: Commands) {
+pub fn ingame_start(mut commands: Commands, mut score: ResMut<Score>) {
+    score.0 = 0;
     //Hopper
     commands.spawn((
         SpriteBundle {
@@ -84,23 +90,20 @@ pub fn ingame_start(mut commands: Commands) {
     //Score text
     commands.spawn((
         Text2dBundle {
-            text: Text::from_section("Score: ", TextStyle { ..default() }),
+            text: Text::from_section(format!("Score: {}", score.0), TextStyle { ..default() }),
             transform: Transform::from_translation(Vec3::new(-230., 200., 0.)),
             ..default()
         },
         Running,
+        ScoreBoard
     ));
 
-    //Score points
-    commands.spawn((
-        Text2dBundle {
-            text: Text::from_section(0.to_string(), TextStyle { ..default() }),
-            transform: Transform::from_translation(Vec3::new(-200., 200., 0.)),
-            ..default()
-        },
-        Score,
-        Running,
-    ));
+    //Seconds
+    commands.spawn((Text2dBundle{
+        text: Text::from_section("60.0", TextStyle{..default()}),
+        transform: Transform::from_translation(Vec3::new(0., 200., 0.)),
+        ..default()
+    }, Running, SecondsEnding));
 
     //Borders
     commands
