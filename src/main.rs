@@ -37,11 +37,11 @@ pub struct Score(u64);
 
 #[derive(Clone, Eq, PartialEq, Debug, Hash, Default, States)]
 pub enum GameState {
+    #[default]
     MainMenu,
     InGame,
     GamePause,
     AfterPause,
-    #[default]
     Restart,
 }
 
