@@ -1,4 +1,5 @@
 use bevy::prelude::*;
+use bevy::window::WindowMode;
 use std::default;
 mod setup;
 use setup::{
@@ -37,14 +38,15 @@ pub struct Score(u64);
 
 #[derive(Clone, Eq, PartialEq, Debug, Hash, Default, States)]
 pub enum GameState {
-    #[default]
     MainMenu,
+    #[default]
     InGame,
     GamePause,
     AfterPause,
     Restart,
 }
 
+#[bevy_main]
 fn main() {
     let ingame = (
         keyboard_input,
@@ -62,7 +64,14 @@ fn main() {
     );
 
     App::new()
-        .add_plugins(DefaultPlugins)
+        .add_plugins(DefaultPlugins.set(WindowPlugin {
+            primary_window: Some(Window {
+                resizable: false,
+                mode: WindowMode::BorderlessFullscreen,
+                ..default()
+            }),
+            ..default()
+        }))
         .add_systems(Startup, camera_setup)
         .add_state::<GameState>()
         .add_systems(OnEnter(GameState::MainMenu), menu_start)

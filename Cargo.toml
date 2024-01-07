@@ -3,11 +3,15 @@ name = "hop_across"
 version = "0.1.0"
 edition = "2021"
 
+[lib]
+name = "hop_across"
+crate-type = ["staticlib", "cdylib"]
+
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-bevy = { git = "https://github.com/bevyengine/bevy"}
-bevy_text = { git = "https://github.com/bevyengine/bevy" }
+bevy = "0.12.1"
+bevy_text = "0.12.1"
 rand = "0.8.5"
 # bevy-inspector-egui = { git = "https://github.com/jakobhellermann/bevy-inspector-egui", version = "0.21.0" }
 
@@ -16,3 +20,15 @@ strip = true
 opt-level = "z"
 lto = true
 codegen-units = 1
+
+[package.metadata.android]
+package = "org.bevyengine.example"
+apk_name = "hopaccross"
+strip = "strip"
+build_targets = ["aarch64-linux-android"]
+
+[package.metadata.android.sdk]
+target_sdk_version = 31
+
+[package.metadata.android.application]
+label = "Hop Across"

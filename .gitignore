@@ -1,2 +1,4 @@
 /target
 /dist
+/rustc*
+/Cargo.lock

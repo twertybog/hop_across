@@ -1,6 +1,6 @@
-use bevy::prelude::*;
+use bevy:: prelude::*;
 
-use crate::Score;
+use crate::{Score, BUTTON};
 
 #[derive(Component)]
 pub struct Hopper;
@@ -90,20 +90,24 @@ pub fn ingame_start(mut commands: Commands, mut score: ResMut<Score>) {
     //Score text
     commands.spawn((
         Text2dBundle {
-            text: Text::from_section(format!("Score: {}", score.0), TextStyle { ..default() }),
-            transform: Transform::from_translation(Vec3::new(-230., 200., 0.)),
+            text: Text::from_section(format!("{}", score.0), TextStyle {..default() }),
+            transform: Transform::from_translation(Vec3::new(0., 180., 0.)),
             ..default()
         },
         Running,
-        ScoreBoard
+        ScoreBoard,
     ));
 
     //Seconds
-    commands.spawn((Text2dBundle{
-        text: Text::from_section("60.0", TextStyle{..default()}),
-        transform: Transform::from_translation(Vec3::new(0., 200., 0.)),
-        ..default()
-    }, Running, SecondsEnding));
+    commands.spawn((
+        Text2dBundle {
+            text: Text::from_section("60.0", TextStyle { ..default() }),
+            transform: Transform::from_translation(Vec3::new(0., 200., 0.)),
+            ..default()
+        },
+        Running,
+        SecondsEnding,
+    ));
 
     //Borders
     commands
@@ -148,7 +152,7 @@ pub fn ingame_start(mut commands: Commands, mut score: ResMut<Score>) {
             ));
         });
 
-    //End of word
+    //End of world
     commands
         .spawn((
             SpriteBundle {
@@ -176,4 +180,39 @@ pub fn ingame_start(mut commands: Commands, mut score: ResMut<Score>) {
                 Running,
             ));
         });
+
+    //On screen buttons
+    // commands
+    //     .spawn((
+    //         ButtonBundle {
+    //             style: Style {
+    //                 width: Val::Px(150.0),
+    //                 height: Val::Px(65.0),
+    //                 border: UiRect::all(Val::Px(5.0)),
+    //                 // horizontally center child text
+    //                 justify_content: JustifyContent::Center,
+    //                 // vertically center child text
+    //                 align_items: AlignItems::Center,
+    //                 ..default()
+    //             },
+    //             border_color: BorderColor(Color::BLACK),
+    //             background_color: BUTTON.into(),
+    //             transform: Transform::from_translation(Vec3::new(-150., 0., 2.)),
+    //             ..default()
+    //         },
+    //         Running,
+    //     ))
+    //     .with_children(|parent| {
+    //         parent.spawn((
+    //             TextBundle::from_section(
+    //                 "up",
+    //                 TextStyle {
+    //                     font_size: 40.0,
+    //                     color: Color::rgb(0.9, 0.9, 0.9),
+    //                     ..default()
+    //                 },
+    //             ),
+    //             Running,
+    //         ));
+    //     });
 }
